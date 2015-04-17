@@ -1,5 +1,5 @@
-IOT Accelerometer Deom
+IOT Accelerometer Demo
 
-![](http://imgur.com/KNCYsMa)
-![](http://imgur.com/UyyCrHg)
-![](http://imgur.com/qdhwCcK)
+![](http://i.imgur.com/KNCYsMa.jpg)
+![](http://i.imgur.com/UyyCrHg.jpg)
+![](http://i.imgur.com/qdhwCcK.jpg)
