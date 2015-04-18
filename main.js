@@ -7,6 +7,10 @@ var x = new mraa.Aio(0);
 var y = new mraa.Aio(1);
 var z = new mraa.Aio(2);
 
+var xo = x.read();
+var yo = y.read();
+var zo = z.read();
+
 var pubnub = PUBNUB.init({
   publish_key: 'demo',
   subscribe_key: 'demo'
@@ -14,9 +18,9 @@ var pubnub = PUBNUB.init({
 
 setInterval(function(){
 
-    var xv = x.read();
-    var yv = y.read();
-    var zv = z.read();
+    var xv = x.read() - xo;
+    var yv = y.read() - yo;
+    var zv = z.read() - zo;
     
     console.log(xv, yv, zv);
     
