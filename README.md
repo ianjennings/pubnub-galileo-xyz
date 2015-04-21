@@ -14,7 +14,16 @@ This is how an acceleromter works. The only difference is there is some compenen
 
 Check out [this article](http://www.dimensionengineering.com/info/accelerometers) for more on accelerometers.
 
+## ADXL335 Triple Axis Accelerometer
+
+![](http://i.imgur.com/WHPThTY.jpg)
+
 For this demo we're going to be using the [SainSmart ADXL335 Triple Axis Accelerometer](https://www.sparkfun.com/products/9269).
+
+> The sensor is a polysilicon surface-micromachined structure built on top of a silicon wafer. Polysilicon springs suspend the structure over the surface of the wafer and provide a resistance against forces due to applied acceleration.
+As described in [the data sheet](http://www.sainsmart.com/arduino-adxl335-triple-axis-accelerometer-breakout-module.html).
+
+Here are some specs:
 
 * 3-axis sensing
 * Small, low profile package
@@ -26,10 +35,18 @@ For this demo we're going to be using the [SainSmart ADXL335 Triple Axis Acceler
 * BW adjustment with a single capacitor per axis
 * RoHS/WEEE lead-free compliant
 
-> The sensor is a polysilicon surface-micromachined structure built on top of a silicon wafer. Polysilicon springs suspend the structure over the surface of the wafer and provide a resistance against forces due to applied acceleration.
-As described in [the data sheet](http://www.sainsmart.com/arduino-adxl335-triple-axis-accelerometer-breakout-module.html).
+## Galileo
 
-![](http://i.imgur.com/WHPThTY.jpg)
+![](http://www.intorobotics.com/wp-content/uploads/2014/12/intel-galileo-gen-2.jpg)
+
+We're going to use Intel Galileo; Intel's flagship IOT prototyping chip that runs NodeJS. Check out the last post where we connected a potentiomter to Intel Galileo.
+
+# Overview
+
+* [Intel Galileo Gen 2](http://www.intel.com/content/www/us/en/do-it-yourself/galileo-maker-quark-board.html) - The beautiful blue chip that publishes potentiometer resistance to the internet.
+* [NodeJS](https://nodejs.org/) - Running on the Galileo linux environment 
+* [PubNub](http://www.pubnub.com/) - Realtime Data Stream Network that connects the Galileo to Eon-chart
+* [EON-chart](pubnub.com/developers/eon) - Realtime charting framework that connects to PubNub and renders the resistance value in HTML.
 
 ![](http://i.imgur.com/1nWovxc.jpg)
 ![](http://i.imgur.com/KUsXgxe.jpg)
