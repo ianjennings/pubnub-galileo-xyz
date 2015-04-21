@@ -83,5 +83,112 @@ Z | Green | A2
 - | Black | GND
 + | Red | 3.3v
 
+Here's what mine looked like when I was done connecting everything:
+
 ![](http://i.imgur.com/KNCYsMa.jpg)
+
+## NodeJS Code
+
+Now we're going to read the accelerometer data using NodeJS and publish it to PubNub network so we can display it in a graph. Load the Intel XDK and start with a blank project.
+
+If you need help setting up your Galileo, check out last weeks post on connecting a Potentiometer to the Galileo.
+
+![](https://software.intel.com/sites/default/files/managed/8e/2f/intelxdkiot_develop.png)
+
+### Package.json
+
+In the package.json add PubNub as a dependency:
+
+```js
+{
+  "name": "pubnub-galileo",
+  "description": "",
+  "version": "0.0.0",
+  "main": "main.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "dependencies": {
+      "pubnub": "3.7.10"
+  }
+}
+```
+
+Then click Install/Build. This essentially runs ```npm install``` on your Galileo and adds the PubNub library to your build. PubNub is the backend for this demo; it allows us to publish the accelerometer data to the internet and read it somewhere else.
+
+We can read the accelerometer data using analog read. We'll assign the values to x, y, and z within our javascript file.
+
+```js
+var mraa = require('mraa');
+
+console.log('MRAA Version: ' + mraa.getVersion()); //write the mraa version to the console
+
+var x = new mraa.Aio(0);
+var y = new mraa.Aio(1);
+var z = new mraa.Aio(2);
+
+var xo = x.read();
+var yo = y.read();
+var zo = z.read();
+```
+
+So all we're gonna do is create a loop to conintually read the values of the X, Y, and Z accelerations. In the following case, we store the initial values as a "zero" value and then calculate the difference. This is rough, but it will work for the sake of this example.
+
+```js
+setInterval(function(){
+
+    var xv = x.read() - xo;
+    var yv = y.read() - yo;
+    var zv = z.read() - zo;
+    
+    console.log(xv, yv, zv);
+
+}, 1000);
+```
+
+### PubNub
+
+Now let's integrate PubNub. PubNub is the service that will allow us to publish the data to the internet and display it on a graph in our webpage.
+
+```js
+var mraa = require('mraa');
+var PUBNUB = require('pubnub');
+
+console.log('MRAA Version: ' + mraa.getVersion()); //write the mraa version to the console
+
+var x = new mraa.Aio(0);
+var y = new mraa.Aio(1);
+var z = new mraa.Aio(2);
+
+var xo = x.read();
+var yo = y.read();
+var zo = z.read();
+
+var pubnub = PUBNUB.init({
+  publish_key: 'demo',
+  subscribe_key: 'demo'
+});
+
+setInterval(function(){
+
+    var xv = x.read() - xo;
+    var yv = y.read() - yo;
+    var zv = z.read() - zo;
+    
+    console.log(xv, yv, zv);
+    
+    pubnub.publish({
+        channel: 'pubnub-intel-gal-demo-xyz',
+        message: {
+          columns: [
+            ['x', xv],
+            ['y', yv],
+            ['z', zv]
+          ]
+        }
+    });
+
+}, 1000);
+```
+
 ![](http://i.imgur.com/qp6fpol.gif)
