@@ -305,6 +305,6 @@ That's it! Now you're Galileo is broadcasting it's information over the internet
 
 # Where to go from here
 
-You can extend this demo by adding more charts (a spline chart for example), more analog inputs (more potentiometers, buttons, light sensors, etc), or even adding more microcontrollers. You can even use PubNub to allow one Galileo to talk to another Galileo, or command them all from a centralized control panel!
+You can extend this demo by adding more charts, more analog inputs (a potentiometer, buttons, light sensors, etc), or even adding more microcontrollers. You can even use PubNub to allow one Galileo to talk to another Galileo, or command them all from a centralized control panel!
 
-Keywords: Mac, thunderbolt, ethernet, galileo, iot, dashboard, realtime chart, potentiometer, gen 2 
+Keywords: Mac, thunderbolt, ethernet, galileo, iot, dashboard, realtime chart, accelerometer, gen 2 
