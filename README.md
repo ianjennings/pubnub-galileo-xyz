@@ -35,12 +35,6 @@ Here are some specs:
 * BW adjustment with a single capacitor per axis
 * RoHS/WEEE lead-free compliant
 
-## Galileo
-
-![](http://www.intorobotics.com/wp-content/uploads/2014/12/intel-galileo-gen-2.jpg)
-
-We're going to use Intel Galileo; Intel's flagship IOT prototyping chip that runs NodeJS. Check out the last post where we connected a potentiomter to Intel Galileo.
-
 # Overview
 
 * [Intel Galileo Gen 2](http://www.intel.com/content/www/us/en/do-it-yourself/galileo-maker-quark-board.html) - The beautiful blue chip that publishes potentiometer resistance to the internet.
@@ -48,7 +42,46 @@ We're going to use Intel Galileo; Intel's flagship IOT prototyping chip that run
 * [PubNub](http://www.pubnub.com/) - Realtime Data Stream Network that connects the Galileo to Eon-chart
 * [EON-chart](pubnub.com/developers/eon) - Realtime charting framework that connects to PubNub and renders the resistance value in HTML.
 
+## Galileo
+
+![](http://www.intorobotics.com/wp-content/uploads/2014/12/intel-galileo-gen-2.jpg)
+
+We're going to use Intel Galileo; Intel's flagship IOT prototyping chip that runs NodeJS. Check out the last post where we connected a potentiomter to Intel Galileo.
+
+## Solder the Accelerometer
+
+First thing we need to do is solder headers to the accelerometer. Soldering headers is very simple. Just insert some headers into the provided points, touch sodler to the connection, and then touch the sodlering iron.
+
+![](http://www.cdn.sciencebuddies.org/Files/2084/5/Elec_primer-solder2.jpg)
+
+When you're done, you'll have an accelerometer you can plug into anything.
+
 ![](http://i.imgur.com/1nWovxc.jpg)
+
+## Wiring the Accelerometer into the Galileo
+
+Great, now let's wire the accelerometer. This particular device is really simple, there are 6 connections.
+
+* ***ST*** - don't worry about this
+* ***Z*** - z axis acceleration
+* ***Y*** - y axis acceleration
+* ***X*** - x axis acceleration
+* ***-*** - ground
+* ***+*** - 3.3v power 
+
+Thanks to the header pins we just soldered, we can simply plug the acclerometer into our breadboard. Take 5 jumper cables, and wire them to each of the connections (excluding ST).
+
 ![](http://i.imgur.com/KUsXgxe.jpg)
+
+I used green for x, y, and z, red for power, and black for ground. Now plug the other ends of the jumpers into the Galileo. Note that you need to use ***3.3v*** power and ***not 5v***. 5v will dammage your accelerometer.
+
+Connection | Wire Color | Galileo Pin
+--------|-----------------|----------
+Z | Green | A0
+X | Green | A1
+Z | Green | A2
+- | Black | GND
++ | Red | 3.3v
+
 ![](http://i.imgur.com/KNCYsMa.jpg)
 ![](http://i.imgur.com/qp6fpol.gif)
