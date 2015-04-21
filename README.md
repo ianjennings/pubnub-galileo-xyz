@@ -191,4 +191,118 @@ setInterval(function(){
 }, 1000);
 ```
 
+The ```channel``` is the name of the room for which we'll subscribe to messages on the other end. The ```message``` is formatted like so because it matches the schema defined in eon-chart. More on that later.
+ 
+If everything is working you should see the value of the potentiometer output to [the PubNub console here](http://www.pubnub.com/console/?channel=pubnub-intel-gal-demo-xyz&origin=pubsub.pubnub.com&sub=demo&pub=demo&cipher=&ssl=false&secret=&auth=).
+ 
+This means we're halfway there. The value is being read from the Galileo and published over PubNub to the internet. If you need more help with PubNub, check out our Javascript SDK Examples.
+
+Now to render that value in a nice dashboard.
+
+# The Dashboard
+
+Now to create an HTML webpage to render the chart. We include the ```eon``` framework in the head of the page, and that'll take care of connecting to PubNub and creating our chart. Easy huh?
+
+```html
+  <script type="text/javascript" src="http://pubnub.github.io/eon/lib/eon.js"></script>
+  <link type="text/css" rel="stylesheet" href="http://pubnub.github.io/eon/lib/eon.css" />
+```
+  
+Create the chart with the following function. We supply the same PubNub channel the Galileo is broadcasting from (```pubnub-intel-gal-demo-xyz```) and render the data in a ```bar``` type chart. EON-chart subscribes to that PubNub channel, renders the chart, and updates it when the value changes.
+
 ![](http://i.imgur.com/qp6fpol.gif)
+
+```html
+<script>
+var channel = "pubnub-intel-gal-demo-xyz";
+  eon.chart({
+    channel: channel,
+    generate: {
+      bindto: '#chart',
+      data: {
+        labels: true,
+        type: 'bar'
+      },
+      bar: {
+        width: {
+          ratio: 0.5
+        }
+      },
+      tooltip: {
+          show: false
+      }
+    }
+  });
+</script> 
+```
+
+Try it out! Load this page up in chrome and move your accelerometer around.
+
+```html
+
+<html>
+  <head>
+
+    <script type="text/javascript" src="http://pubnub.github.io/eon/lib/eon.js"></script>
+    <link type="text/css" rel="stylesheet" href="http://pubnub.github.io/eon/lib/eon.css" />
+
+    <style>
+      .c3-region-1 {
+        fill: #dd3333;
+        fill-opacity: 0.8
+      }
+    </style>
+
+  </head>
+  <body>
+    <div id="chart"></div>
+    <div id="chart2"></div>
+    <script>
+      var channel = "pubnub-intel-gal-demo-xyz";
+      eon.chart({
+        channel: channel,
+        generate: {
+          bindto: '#chart',
+          data: {
+            labels: true,
+            type: 'bar'
+          },
+          bar: {
+            width: {
+              ratio: 0.5
+            }
+          },
+          tooltip: {
+              show: false
+          }
+        }
+      });
+      eon.chart({
+        channel: channel,
+        flow: {
+          duration: 100
+        },
+        generate: {
+          bindto: '#chart2',
+          data: {
+            labels: false
+          }
+        }
+      });
+    </script>
+
+  </body>
+</html>
+
+```
+
+# Wohoo!
+
+That's it! Now you're Galileo is broadcasting it's information over the internet (via PubNub) and into a webpage. You're probably loading the page locally, but it can be hosted anywhere and it'll still work all the same. 
+
+
+# Where to go from here
+
+You can extend this demo by adding more charts (a spline chart for example), more analog inputs (more potentiometers, buttons, light sensors, etc), or even adding more microcontrollers. You can even use PubNub to allow one Galileo to talk to another Galileo, or command them all from a centralized control panel!
+
+Keywords: Mac, thunderbolt, ethernet, galileo, iot, dashboard, realtime chart, potentiometer, gen 2 
