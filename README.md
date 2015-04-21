@@ -193,9 +193,9 @@ setInterval(function(){
 
 The ```channel``` is the name of the room for which we'll subscribe to messages on the other end. The ```message``` is formatted like so because it matches the schema defined in eon-chart. More on that later.
  
-If everything is working you should see the value of the potentiometer output to [the PubNub console here](http://www.pubnub.com/console/?channel=pubnub-intel-gal-demo-xyz&origin=pubsub.pubnub.com&sub=demo&pub=demo&cipher=&ssl=false&secret=&auth=).
+If everything is working you should see the value of the accelerometer output to [the PubNub console here](http://www.pubnub.com/console/?channel=pubnub-intel-gal-demo-xyz&origin=pubsub.pubnub.com&sub=demo&pub=demo&cipher=&ssl=false&secret=&auth=). Try moving the accelerometer around, moving and rotating it.
  
-This means we're halfway there. The value is being read from the Galileo and published over PubNub to the internet. If you need more help with PubNub, check out our Javascript SDK Examples.
+We're halfway there. The value is being read from the Galileo and published over PubNub to the internet. If you need more help with PubNub, check out our Javascript SDK Examples.
 
 Now to render that value in a nice dashboard.
 
