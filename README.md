@@ -298,6 +298,8 @@ Try it out! Load this page up in chrome and move your accelerometer around.
 
 # Wohoo!
 
+![](http://i.imgur.com/X5lK5WA.gif)
+
 That's it! Now you're Galileo is broadcasting it's information over the internet (via PubNub) and into a webpage. You're probably loading the page locally, but it can be hosted anywhere and it'll still work all the same. 
 
 
