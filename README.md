@@ -204,8 +204,8 @@ Now to render that value in a nice dashboard.
 Now to create an HTML webpage to render the chart. We include the ```eon``` framework in the head of the page, and that'll take care of connecting to PubNub and creating our chart. Easy huh?
 
 ```html
-  <script type="text/javascript" src="http://pubnub.github.io/eon/lib/eon.js"></script>
-  <link type="text/css" rel="stylesheet" href="http://pubnub.github.io/eon/lib/eon.css" />
+<script type="text/javascript" src="http://pubnub.github.io/eon/lib/eon.js"></script>
+<link type="text/css" rel="stylesheet" href="http://pubnub.github.io/eon/lib/eon.css" />
 ```
   
 Create the chart with the following function. We supply the same PubNub channel the Galileo is broadcasting from (```pubnub-intel-gal-demo-xyz```) and render the data in a ```bar``` type chart. EON-chart subscribes to that PubNub channel, renders the chart, and updates it when the value changes.
